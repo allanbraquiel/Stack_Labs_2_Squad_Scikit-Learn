@@ -1,6 +1,10 @@
 # Stack Labs 2 Squad Scikit-Learn
 Projeto Stack Labs 2 - Squad Scikit-Learn
 
+graci-py-patch-1
+
+
+main
 **Paticipantes**: 
 - Alessandra Sanches Milhomem 
 - Allan Braquiel
