@@ -3,7 +3,6 @@ Projeto Stack Labs 2 - Squad Scikit-Learn
 
 
 **Paticipantes**: 
-- Alessandra Sanches Milhomem 
 - Allan Braquiel
 - Graciele Oliveira dos Santos
 - Nathália Santiago
