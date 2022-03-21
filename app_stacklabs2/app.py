@@ -7,7 +7,6 @@ import altair as alt
 import base64
 import io
 from io import StringIO
-from streamlit_metrics import metric, metric_row
 import streamlit.components.v1 as components
 import time
 
