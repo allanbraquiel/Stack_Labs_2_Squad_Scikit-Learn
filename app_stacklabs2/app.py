@@ -13,7 +13,7 @@ import numpy as np
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import confusion_matrix #, accuracy_score
+from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.metrics import precision_recall_fscore_support as score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import metrics
@@ -186,7 +186,7 @@ dtc.fit(x_train, y_train)
 
 #acurácia do modelo
 st.subheader('Acurácia do modelo')
-# st.write(accuracy_score(y_test, dtc.predict(x_text))*100)
+st.write(accuracy_score(y_test, dtc.predict(x_text))*100)
 
 #previsão do resultado
 prediction = dtc.predict(user_input_variables)
