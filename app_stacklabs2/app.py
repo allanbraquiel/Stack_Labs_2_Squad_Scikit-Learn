@@ -9,9 +9,20 @@ import io
 from io import StringIO
 import streamlit.components.v1 as components
 import time
+import numpy as np
 
-from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix #, accuracy_score
+from sklearn.metrics import precision_recall_fscore_support as score
+from sklearn.ensemble import RandomForestClassifier
+from sklearn import metrics
+from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import RepeatedKFold
+from sklearn.model_selection import cross_val_score,cross_val_predict
+from sklearn.metrics import classification_report
+from sklearn.metrics import precision_recall_curve, roc_auc_score, roc_curve, auc
+from sklearn.metrics import f1_score
 from sklearn.tree import DecisionTreeClassifier
 
 st.set_page_config(
@@ -37,6 +48,30 @@ df = pd.read_csv(url)
 # verificando o dataset
 st.subheader("Selecionando apenas um pequeno conjunto de atributos")
 
+
+dados = df.rename(columns = {'Diabetes_binary':'Diabetes', 
+                                         'HighBP':'PressAlta',  
+                                         'HighChol':'CholAlto',
+                                         'CholCheck':'ColCheck', 
+                                         'BMI':'IMC', 
+                                         'Smoker':'Fumante', 
+                                         'Stroke':'Derrame',
+                                         'HeartDiseaseorAttack':'CoracaoEnf', 
+                                         'PhysActivity':'AtivFisica', 
+                                         'Fruits':'Frutas',
+                                         'Veggies':"Vegetais", 
+                                         'HvyAlcoholConsump':'ConsAlcool', 
+                                         'AnyHealthcare':'PlSaude',
+                                         'NoDocbcCost':'DespMedica', 
+                                         'GenHlth':'SdGeral',
+                                         'MentHlth':'SdMental',
+                                         'PhysHlth':'SdFisica',
+                                         'DiffWalk':'DifCaminhar', 
+                                         'Sex':'Sexo',
+                                         'Age':'Idade',
+                                         'Education':'Educacao',
+                                         'Income':'Renda' })
+
 # atributos para serem exibidos por padrão
 defaultcols = ["HighChol", "HighBP", "BMI", "Age", "Sex", "Smoker", "Stroke", "HvyAlcoholConsump", "Diabetes_binary"]
 
@@ -47,14 +82,13 @@ with st.expander("Descrição do dataset:", expanded=False):
     st.dataframe(df[cols])
 
 
-#cabeçalho
-st.subheader("Informações dos dados")
-
 #nomedousuário
 user_input = st.sidebar.text_input("Digite seu nome")
 
 #escrevendo o nome do usuário
 st.write("Paciente:", user_input)
+
+
 
 #dados de entrada
 # x = df.drop(['Diabetes_binary'],1)
@@ -140,15 +174,19 @@ def get_user_date():
 
 user_input_variables = get_user_date()
 
-#grafico
-graf = st.bar_chart(user_input_variables)
+
+#cabeçalho
+with st.expander("Informações dos dados"):
+    #grafico
+    graf = st.bar_chart(user_input_variables)
+    
 
 dtc = DecisionTreeClassifier(criterion='entropy', max_depth=3)
 dtc.fit(x_train, y_train)
 
 #acurácia do modelo
 st.subheader('Acurácia do modelo')
-st.write(accuracy_score(y_test, dtc.predict(x_text))*100)
+# st.write(accuracy_score(y_test, dtc.predict(x_text))*100)
 
 #previsão do resultado
 prediction = dtc.predict(user_input_variables)
