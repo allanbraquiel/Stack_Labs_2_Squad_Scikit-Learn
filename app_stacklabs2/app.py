@@ -471,7 +471,8 @@ if btn_predict:
     st.subheader('Previsão:')
     if prediction == 1:
         st.write("**Positivo**")
-        st.write("Sugerimos que procure um médico, pratique exercícios e se oriente com um nutricionista.")
+        st.write("Você tem uma tendência a evoluir para um quadro de diabetes. Sugerimos que procure um médico,", 
+        "pratique exercícios e se oriente com um nutricionista.")
     else:
         st.write("Negativo")
         st.write("Aparentemente você não tem as características de uma pessoa com diabetes. Mas não se descuide, faça exames periódicos,",  
