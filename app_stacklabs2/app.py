@@ -10,6 +10,7 @@ from io import StringIO
 import streamlit.components.v1 as components
 import time
 import numpy as np
+from PIL import Image
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, accuracy_score
@@ -219,6 +220,7 @@ with st.expander("Descrição do dataset", expanded=False):
 
 #dataset
 url = "https://raw.githubusercontent.com/allanbraquiel/Stack_Labs_2_Squad_Scikit-Learn/main/datasets/diabetes_binary_5050split_health_indicators_BRFSS2015.csv"
+aws = "s3://stacklabs02/diabetes_012_health_indicators_BRFSS2015.csv"
 df = pd.read_csv(url)
 
 df = df.astype(int)
