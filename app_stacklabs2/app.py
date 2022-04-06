@@ -388,26 +388,26 @@ st.write(user_input, ", Os dados selecionados foram:", user_input_variables)
 ############################
 # Graficos
 
-brush = alt.selection_multi()
+# brush = alt.selection_multi()
 
-renda_part = alt.Chart(df).mark_bar().encode(
-            alt.X("Renda", bin=False, title="Renda", sort=alt.SortField("order", order="descending"),),
-            alt.Y("count():Q", title="Renda dos participantes")
-        ).properties(
-            # width=700,
-            height=300
-        ).configure_mark(
-            opacity=0.8,
-            color='#04a2ca',
-            cornerRadius=4,
-            tooltip=True,
-        ).add_selection(
-            brush
-        ).transform_filter(
-            brush
-        )
+# renda_part = alt.Chart(df).mark_bar().encode(
+#3           alt.X("Renda", bin=False, title="Renda", sort=alt.SortField("order", order="descending"),),
+#            alt.Y("count():Q", title="Renda dos participantes")
+#        ).properties(
+#            # width=700,
+#            height=300
+#        ).configure_mark(
+#            opacity=0.8,
+#            color='#04a2ca',
+#            cornerRadius=4,
+#            tooltip=True,
+#        ).add_selection(
+#            brush
+#        ).transform_filter(
+#            brush
+#        )
 
-st.write(renda_part)
+# st.write(renda_part)
 
 
 
