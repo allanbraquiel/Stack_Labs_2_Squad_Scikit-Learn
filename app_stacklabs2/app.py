@@ -10,7 +10,6 @@ from io import StringIO
 import streamlit.components.v1 as components
 import time
 import numpy as np
-import seaborn as sns
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, accuracy_score
