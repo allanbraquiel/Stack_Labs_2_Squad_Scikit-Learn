@@ -448,9 +448,9 @@ result = arvore.predict(x_test)
 from sklearn import metrics
 from sklearn.metrics import confusion_matrix
 
-st.write("Matriz de confusão: ", confusion_matrix(y_test, result))
+# st.write("Matriz de confusão: ", confusion_matrix(y_test, result))
 
-st.write("Score Arvore: ", arvore.score(x_test, y_test))
+# st.write("Score Arvore: ", arvore.score(x_test, y_test))
 # st.write(metrics.classification_report(y_test, result))
 
 
@@ -465,8 +465,16 @@ x_train, x_text, y_train, y_test = train_test_split(x, y, test_size=0.2)
 prediction = arvore.predict(user_input_variables)
 
 st.subheader('Previsão:')
+if prediction == 1:
+    st.write("**Positivo**")
+    st.write("Sugerimos que procure um médico, pratique exercícios e se oriente com um nutricionista.")
+else:
+    st.write("Negativo")
+    st.write("Aparentemente você não tem as características de uma pessoa com diabetes. Mas não se descuide, faça exames periódicos,",  
+    "pratiqe exercícios e tenha uma boa alimentação")
 
-st.write(prediction)
+# st.write("Score: ", arvore.score(y_test, prediction))
+
 
 
 
