@@ -227,27 +227,28 @@ df = df.astype(int)
 st.sidebar.subheader("Filtros para realizar a predição")
 
 #nomedousuário
-user_input = st.sidebar.text_input("Digite seu nome")
+user_input = st.sidebar.text_input("Digite seu nome:", placeholder="Digite seu nome")
 
 
 #dados dos usuários com a função
 def get_user_date():
 
-    CholAlto = st.sidebar.selectbox("Colesterol Alto", ("Sim", "Não"))
+    CholAlto = st.sidebar.selectbox("Tem Colesterol Alto?", ("Sim", "Não"))
     if CholAlto == "Sim":
         CholAlto = 1
     else:
         CholAlto = 0
 
-    PressAlta  = st.sidebar.selectbox("Pressão Alta", ("Sim", "Não"))
+    PressAlta  = st.sidebar.selectbox("Tem Pressão Alta?", ("Sim", "Não"))
     if PressAlta == "Sim":
         PressAlta = 1
     else:
         PressAlta = 0
 
-    IMC = st.sidebar.slider("Índice de massa corporal", 12, 98, 25)
+    IMC = st.sidebar.number_input("Índice de massa corporal", min_value=12, max_value=100, value=28)
 
-    Idade = st.sidebar.slider("Idade", 0, 100, 25)
+    # Idade = st.sidebar.slider("Idade", 0, 100, 25)
+    Idade = st.sidebar.number_input("Idade", min_value=0, max_value=100, value=30)
     if Idade >=18 and Idade <=24:
         Idade = 1
     elif Idade >=25 and Idade <=29:
@@ -284,25 +285,25 @@ def get_user_date():
     else:
         Sexo = 1
 
-    Fumante = st.sidebar.selectbox("Fumante", ("Sim", "Não"))
+    Fumante = st.sidebar.selectbox("É fumante?", ("Sim", "Não"))
     if Fumante == "Sim":
         Fumante = 1
     else:
         Fumante = 0
 
-    Derrame = st.sidebar.selectbox("Derrame", ("Sim", "Não"))
+    Derrame = st.sidebar.selectbox("Já sofreu derrame?", ("Sim", "Não"))
     if Derrame == "Sim":
         Derrame = 1
     else:
         Derrame = 0
 
-    ConsAlcool  = st.sidebar.selectbox("Consome álcool", ("Sim", "Não"))
+    ConsAlcool  = st.sidebar.selectbox("Consome álcool?", ("Sim", "Não"))
     if ConsAlcool == "Sim":
         ConsAlcool = 1
     else:
         ConsAlcool = 0
 
-    Renda = st.sidebar.selectbox("Renda Familiar", ("10 Mil", "15 Mil", "20 Mil", "25 Mil", "35 Mil", "50 Mil", 
+    Renda = st.sidebar.selectbox("Renda familiar anual", ("10 Mil", "15 Mil", "20 Mil", "25 Mil", "35 Mil", "50 Mil", 
                                     "75 Mil", "Maior que 75 Mil"))
     if Renda == "10 Mil":
         Renda = 1
@@ -383,43 +384,6 @@ with st.expander("Clique para expandir/recolher", expanded=False):
     # Dataframe
     st.dataframe(df[cols])
 
-
-
-
-############################
-# Graficos
-
-# brush = alt.selection_multi()
-
-# renda_part = alt.Chart(df).mark_bar().encode(
-#3           alt.X("Renda", bin=False, title="Renda", sort=alt.SortField("order", order="descending"),),
-#            alt.Y("count():Q", title="Renda dos participantes")
-#        ).properties(
-#            # width=700,
-#            height=300
-#        ).configure_mark(
-#            opacity=0.8,
-#            color='#04a2ca',
-#            cornerRadius=4,
-#            tooltip=True,
-#        ).add_selection(
-#            brush
-#        ).transform_filter(
-#            brush
-#        )
-
-# st.write(renda_part)
-
-
-
-
-
-
-
-# Separando as features
-
-# x_data1 = df.drop(["Diabetes"], axis=1, inplace=False)
-# y_data = df["Diabetes"]
 
 #dados de entrada
 # x = df.drop(['Diabetes_binary'],1)
