@@ -17,6 +17,9 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn import metrics
 from sklearn.metrics import classification_report
 from sklearn.metrics import f1_score
+from sklearn import metrics
+from sklearn.metrics import confusion_matrix
+from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
 
 
@@ -28,6 +31,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+st.sidebar.image('images/Scikit_learn_logo_small.svg.png', use_column_width=True)
 
 #título
 st.title("Projeto Stack Labs 2 - Squad Scikit-Learn")
@@ -35,7 +39,7 @@ st.title("Projeto Stack Labs 2 - Squad Scikit-Learn")
 # Apresentação
 st.subheader("Particpantes")
 st.write(""" 
-- **Allan Braquiel**
+- [**Allan Braquiel**](https://www.linkedin.com/in/allanbraquiel/)
 - **Graciele Oliveira dos Santos**
 - **Nathália Santiago**
 """)
@@ -235,7 +239,7 @@ def get_user_date():
     else:
         CholAlto = 0
 
-    PressAlta  = st.sidebar.selectbox("Pressão Sanguínea", ("Sim", "Não"))
+    PressAlta  = st.sidebar.selectbox("Pressão Alta", ("Sim", "Não"))
     if PressAlta == "Sim":
         PressAlta = 1
     else:
@@ -434,28 +438,10 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_
 
 # Decision tree
 
-from sklearn import tree
-arvore = tree.DecisionTreeClassifier()
-arvore.fit(x_train, y_train)
-
-
-
-result = arvore.predict(x_test)
-
-from sklearn import metrics
-from sklearn.metrics import confusion_matrix
-
-# st.write("Matriz de confusão: ", confusion_matrix(y_test, result))
-
-# st.write("Score Arvore: ", arvore.score(x_test, y_test))
-# st.write(metrics.classification_report(y_test, result))
-
-
-#########################
-
-
-#separa dados em treinamento e teste
-x_train, x_text, y_train, y_test = train_test_split(x, y, test_size=0.2)
+# Criando o objeto e treinando o modelo
+arvore = RandomForestClassifier(criterion="entropy", max_depth=70, random_state=0, n_estimators=100)
+arvore.fit(x, y)
+score = arvore.score(x, y)
 
 
 #previsão do resultado
@@ -469,6 +455,7 @@ if btn_predict:
         st.write(user_input, ", Os dados selecionados foram:", user_input_variables)
 
     st.subheader('Previsão:')
+    # st.write("Score da previsão:", round(score,2)*100, "%")
     if prediction == 1:
         st.write("**Positivo**")
         st.write("Você tem uma tendência a evoluir para um quadro de diabetes. Sugerimos que procure um médico,", 
@@ -476,7 +463,7 @@ if btn_predict:
     else:
         st.write("Negativo")
         st.write("Aparentemente você não tem as características de uma pessoa com diabetes. Mas não se descuide, faça exames periódicos,",  
-        "pratiqe exercícios e tenha uma boa alimentação")
+        "pratiqe exercícios e tenha uma boa alimentação.")
 
 # st.write("Score: ", arvore.score(y_test, prediction))
 
