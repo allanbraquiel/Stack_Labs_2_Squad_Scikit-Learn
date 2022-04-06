@@ -41,8 +41,8 @@ st.write("""
 """)
 
 # Descriçaõ do projeto
-st.subheader("Definição do Projeto")
-st.write("**Realizar uma previsão de pessoas que podem vir a desenvolver Diabetes com base nas suas características atuais**")
+st.subheader("Objetivo do Projeto:")
+st.write("**Realizar uma previsão de pessoas que podem vir a desenvolver Diabetes com base nas suas características atuais, usando um algoritmo de Machine Learning para realizar uma predição.**")
 
 # Descrição do dataset
 with st.expander("Descrição do dataset", expanded=False):
@@ -343,7 +343,7 @@ user_input_variables = get_user_date()
 
 # Pagina Principal
 # verificando o dataset
-st.subheader("Selecionando apenas um pequeno conjunto de atributos")
+st.subheader("Exbindo uma amostra dos dados")
 
 
 df = df.rename(columns = {'Diabetes_binary':'Diabetes', 
@@ -374,14 +374,15 @@ df = df.rename(columns = {'Diabetes_binary':'Diabetes',
 defaultcols = ["CholAlto", "PressAlta", "IMC", "Idade", "Sexo", "Fumante", "Derrame", "ConsAlcool", "Diabetes"]
 
 # Exibir o dataframe dos chamados
-with st.expander("Visualizando os dados do dataset", expanded=False):
+with st.expander("Clique para expandir/recolher", expanded=False):
     cols = st.multiselect("", df.columns.tolist(), default=defaultcols)
     # Dataframe
     st.dataframe(df[cols])
 
 
 #escrevendo o nome do usuário
-st.write(user_input, ", Os dados selecionados foram:", user_input_variables)
+if user_input != "":
+    st.write(user_input, ", Os dados selecionados foram:", user_input_variables)
 
 
 
