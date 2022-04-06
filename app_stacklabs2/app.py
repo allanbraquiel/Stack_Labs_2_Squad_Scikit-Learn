@@ -380,10 +380,6 @@ with st.expander("Clique para expandir/recolher", expanded=False):
     st.dataframe(df[cols])
 
 
-#escrevendo o nome do usuário
-if user_input != "":
-    st.write(user_input, ", Os dados selecionados foram:", user_input_variables)
-
 
 
 ############################
@@ -465,14 +461,21 @@ x_train, x_text, y_train, y_test = train_test_split(x, y, test_size=0.2)
 #previsão do resultado
 prediction = arvore.predict(user_input_variables)
 
-st.subheader('Previsão:')
-if prediction == 1:
-    st.write("**Positivo**")
-    st.write("Sugerimos que procure um médico, pratique exercícios e se oriente com um nutricionista.")
-else:
-    st.write("Negativo")
-    st.write("Aparentemente você não tem as características de uma pessoa com diabetes. Mas não se descuide, faça exames periódicos,",  
-    "pratiqe exercícios e tenha uma boa alimentação")
+btn_predict = st.sidebar.button("Realizar Predição")
+
+if btn_predict:
+    #escrevendo o nome do usuário
+    if user_input != "":
+        st.write(user_input, ", Os dados selecionados foram:", user_input_variables)
+
+    st.subheader('Previsão:')
+    if prediction == 1:
+        st.write("**Positivo**")
+        st.write("Sugerimos que procure um médico, pratique exercícios e se oriente com um nutricionista.")
+    else:
+        st.write("Negativo")
+        st.write("Aparentemente você não tem as características de uma pessoa com diabetes. Mas não se descuide, faça exames periódicos,",  
+        "pratiqe exercícios e tenha uma boa alimentação")
 
 # st.write("Score: ", arvore.score(y_test, prediction))
 
