@@ -380,7 +380,7 @@ df = df.rename(columns = {'Diabetes_binary':'Diabetes',
 defaultcols = ["CholAlto", "PressAlta", "IMC", "Idade", "Sexo", "Fumante", "Derrame", "ConsAlcool", "Diabetes"]
 
 # Exibir o dataframe dos chamados
-with st.expander("Clique para expandir", expanded=False):
+with st.expander("Clique para recolher ou expandir", expanded=True):
     cols = st.multiselect("", df.columns.tolist(), default=defaultcols)
     # Dataframe
     st.dataframe(df[cols])
