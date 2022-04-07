@@ -40,8 +40,8 @@ st.title("Projeto Stack Labs 2 - Squad Scikit-Learn")
 st.subheader("Particpantes")
 st.write(""" 
 - [**Allan Braquiel**](https://www.linkedin.com/in/allanbraquiel/)
-- **Graciele Oliveira dos Santos**
-- **Nathália Santiago**
+- [**Graciele Oliveira dos Santos**](https://www.linkedin.com/in/graciele-santos-423937121/)
+- [**Nathália Santiago**](https://www.linkedin.com/in/santiagonathalia/)
 """)
 
 # Descriçaõ do projeto
