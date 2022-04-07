@@ -349,7 +349,7 @@ user_input_variables = get_user_date()
 
 # Pagina Principal
 # verificando o dataset
-st.subheader("Exbindo uma amostra dos dados")
+st.subheader("Exibindo uma amostra dos dados")
 
 
 df = df.rename(columns = {'Diabetes_binary':'Diabetes', 
@@ -380,7 +380,7 @@ df = df.rename(columns = {'Diabetes_binary':'Diabetes',
 defaultcols = ["CholAlto", "PressAlta", "IMC", "Idade", "Sexo", "Fumante", "Derrame", "ConsAlcool", "Diabetes"]
 
 # Exibir o dataframe dos chamados
-with st.expander("Clique para expandir/recolher", expanded=False):
+with st.expander("Clique para expandir", expanded=False):
     cols = st.multiselect("", df.columns.tolist(), default=defaultcols)
     # Dataframe
     st.dataframe(df[cols])
@@ -392,18 +392,7 @@ x = df[["CholAlto", "PressAlta", "IMC", "Idade", "Sexo", "Fumante", "Derrame", "
 y = df['Diabetes']
 
 
-# X = (x - np.min(x)) / (np.max(x) - np.min(x)).values
-
-
-
-# separando os dados de treino e teste
-
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42) 
-# st.write(x_train)
-
-# Decision tree
-
-# Criando o objeto e treinando o modelo
+# Criando o objeto e treinando o modelo com Random Forest
 arvore = RandomForestClassifier(criterion="entropy", max_depth=70, random_state=0, n_estimators=100)
 arvore.fit(x, y)
 score = arvore.score(x, y)
