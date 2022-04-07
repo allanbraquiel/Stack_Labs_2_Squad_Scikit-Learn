@@ -37,7 +37,7 @@ st.sidebar.image('https://stacklabs02.s3.amazonaws.com/Scikit_learn_logo_small.s
 st.title("Projeto Stack Labs 2 - Squad Scikit-Learn")
 
 # Apresentação
-st.subheader("Particpantes")
+st.subheader("Participantes")
 st.write(""" 
 - [**Allan Braquiel**](https://www.linkedin.com/in/allanbraquiel/)
 - [**Graciele Oliveira dos Santos**](https://www.linkedin.com/in/graciele-santos-423937121/)
@@ -240,7 +240,7 @@ def get_user_date():
     else:
         CholAlto = 0
 
-    PressAlta  = st.sidebar.selectbox("Tem Pressão Alta?", ("Sim", "Não"))
+    PressAlta  = st.sidebar.selectbox("É hipertenso?", ("Sim", "Não"))
     if PressAlta == "Sim":
         PressAlta = 1
     else:
